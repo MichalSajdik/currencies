@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const HeaderWrapper = styled.div`
   background-color: black;
-  padding: 8px;
+  padding: 8px 8px 8px 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,8 +11,7 @@ const HeaderWrapper = styled.div`
   color: white;
 `
 
-export default function Header(){
-
+export default function Header() {
     return <HeaderWrapper>
         George FE Test
     </HeaderWrapper>
