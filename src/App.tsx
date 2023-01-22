@@ -3,12 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import Header from "./components/Header";
 import Search from "./components/Search";
+import ListOfCurrencies from "./components/ListOfCurrencies";
 
 function App() {
   return (
     <div className="App">
       <Header/>
       <Search/>
+      <ListOfCurrencies/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
