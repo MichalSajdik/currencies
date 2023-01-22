@@ -5,9 +5,8 @@ export default function getListOfCurrencies(setIsLoading: any, setListOfCurrenci
         .then((response: { data: any; }) => {
             setListOfCurrencies(response.data)
             setIsLoading(false)
-        }).catch((error: any) => {
+        }).catch(() => {
         setError(true)
         setIsLoading(false)
-        console.log(error)
     });
 }

@@ -8,9 +8,9 @@ export type CurrencyPropsType = {
 }
 
 type RateType = {
-    buy: number;
-    indicator: number;
-    lastModified: Date;
-    middle: number;
-    sell: number;
+    buy?: number;
+    indicator?: number;
+    lastModified?: Date;
+    middle?: number;
+    sell?: number;
 }

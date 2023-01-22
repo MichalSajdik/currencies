@@ -34,13 +34,13 @@ type CurrencyRowPropsType = {
 
 export default function CurrencyRow({currency, baseCurrency}: CurrencyRowPropsType) {
     const exchangeRate = currency.exchangeRate?.middle ? currency.exchangeRate?.middle + " " + baseCurrency : "Value not provided"
-    return <CurrencyRowWrapper>
+    return <CurrencyRowWrapper data-testid="currency-row-wrapper">
         <CurrencyColumn>
-            <CurrencyRowLeftSide>
-                <FlagWrapper>
+            <CurrencyRowLeftSide data-testid="currency-row-left-side">
+                <FlagWrapper data-testid="flag-wrapper">
                     <img
                         src={process.env.PUBLIC_URL + "/flags/" + currency.currency.substring(0, 2).toLowerCase() + ".png"}
-                        alt=""/>
+                        alt="flag"/>
                 </FlagWrapper>
                 {currency.currency}
             </CurrencyRowLeftSide>
