@@ -40,8 +40,8 @@ export default function Search() {
         }
     };
 
-    return <SearchRowWrapper>
-        <SearchStyledDiv>
+    return <SearchRowWrapper data-testid="search-row-wrapper">
+        <SearchStyledDiv data-testid="search-styled-div">
             Search
         </SearchStyledDiv>
         <SearchStyledInput

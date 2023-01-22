@@ -3,7 +3,7 @@ import {render, screen} from '@testing-library/react'
 import CurrencyRow from "../components/CurrencyRow";
 
 describe('CurrencyRow', () => {
-    it('renders correctly with all props', () => {
+    it('should render correctly with all props', () => {
         const currency = {
             currency: 'USD',
             nameI18N: 'United States Dollar',
@@ -22,7 +22,7 @@ describe('CurrencyRow', () => {
         expect(screen.getByTestId(/flag-wrapper/i)).toHaveStyle('width: 70px; height: 53px; padding-right: 8px')
     })
 
-    it('renders correctly with no exchange rate', () => {
+    it('should render correctly with no exchange rate', () => {
         const currency = {
             currency: 'USD',
             nameI18N: 'United States Dollar',
