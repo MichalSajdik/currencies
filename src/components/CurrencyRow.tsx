@@ -17,8 +17,13 @@ const CurrencyRowLeftSide = styled.div`
   align-items: center;
 `
 
+const CurrencyColumn = styled.div`
+  width: 33%;
+`
+
 const FlagWrapper = styled.div`
   width: 70px;
+  height: 53px;
   padding-right: 8px;
 `
 
@@ -28,15 +33,23 @@ type CurrencyRowPropsType = {
 }
 
 export default function CurrencyRow({currency, baseCurrency}: CurrencyRowPropsType) {
-    const exchangeRate = currency.exchangeRate?.middle ? currency.exchangeRate?.middle+ " " + baseCurrency : "Value not provided"
+    const exchangeRate = currency.exchangeRate?.middle ? currency.exchangeRate?.middle + " " + baseCurrency : "Value not provided"
     return <CurrencyRowWrapper>
-        <CurrencyRowLeftSide>
-            <FlagWrapper>
-                <img src={process.env.PUBLIC_URL + "/flags/" + currency.currency.substring(0, 2).toLowerCase() + ".png"}
-                     alt=""/>
-            </FlagWrapper>
-            {currency.currency}
-        </CurrencyRowLeftSide>
-        {exchangeRate}
+        <CurrencyColumn>
+            <CurrencyRowLeftSide>
+                <FlagWrapper>
+                    <img
+                        src={process.env.PUBLIC_URL + "/flags/" + currency.currency.substring(0, 2).toLowerCase() + ".png"}
+                        alt=""/>
+                </FlagWrapper>
+                {currency.currency}
+            </CurrencyRowLeftSide>
+        </CurrencyColumn>
+        <CurrencyColumn>
+            {currency.nameI18N}
+        </CurrencyColumn>
+        <CurrencyColumn>
+            {exchangeRate}
+        </CurrencyColumn>
     </CurrencyRowWrapper>
 }
