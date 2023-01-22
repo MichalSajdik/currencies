@@ -1,3 +1,11 @@
+export type ListOfCurrenciesDataType = {
+    baseCurrency: string;
+    comparisonDate: Date;
+    fx: CurrencyPropsType[];
+    institute: number;
+    lastUpdated: Date;
+}
+
 export type CurrencyPropsType = {
     banknoteRate?: RateType;
     currency: string;

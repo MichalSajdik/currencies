@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import useListOfCurrencies from '../hooks/useListOfCurrencies';
@@ -11,7 +12,6 @@ describe('ListOfCurrencies', () => {
     beforeEach(() => {
         mockUseListOfCurrencies.mockClear();
 
-        // @ts-ignore
         global.window = Object.create(window);
         const url = "http://dummy.com";
         Object.defineProperty(window, 'location', {
@@ -23,7 +23,7 @@ describe('ListOfCurrencies', () => {
     });
 
     it('should render a CircularProgress component when loading', () => {
-        mockUseListOfCurrencies.mockReturnValue({error: false, listOfCurrencies: undefined, loading: true });
+        mockUseListOfCurrencies.mockReturnValue({error: false, listOfCurrencies: [], loading: true });
 
 
         render(<ListOfCurrencies />);
@@ -31,7 +31,7 @@ describe('ListOfCurrencies', () => {
     });
 
     it('should render an Alert component with error message when there is an error', () => {
-        mockUseListOfCurrencies.mockReturnValue({listOfCurrencies: undefined, loading: false, error: true });
+        mockUseListOfCurrencies.mockReturnValue({listOfCurrencies: [], loading: false, error: true });
         render(<ListOfCurrencies />);
         expect(screen.getByText('This is an error alert — there was error, while getting data!')).toBeInTheDocument();
     });
@@ -41,8 +41,8 @@ describe('ListOfCurrencies', () => {
             error: false, loading: false,
             listOfCurrencies: {
                 fx: [
-                    { currency: 'USD', nameI18N: 'United States dollar' },
-                    { currency: 'EUR', nameI18N: 'Euro' },
+                    { currency: 'USD', nameI18N: 'United States dollar', precision: 2 },
+                    { currency: 'EUR', nameI18N: 'Euro', precision: 2 },
                 ],
                 baseCurrency: 'USD',
             }
