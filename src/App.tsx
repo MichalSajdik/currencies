@@ -1,15 +1,14 @@
 import React from 'react';
-import Header from "./components/Header";
-import Search from "./components/Search";
-import ListOfCurrencies from "./components/ListOfCurrencies";
+import {Route, BrowserRouter, Routes} from "react-router-dom";
+import ListOfCurrenciesPage from "./page/ListOfCurrenciesPage";
 
 function App() {
     return (
-        <>
-            <Header/>
-            <Search/>
-            <ListOfCurrencies/>
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route path="*" element={<ListOfCurrenciesPage/>}/>
+            </Routes>
+        </BrowserRouter>
     );
 }
 

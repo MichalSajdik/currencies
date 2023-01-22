@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {ChangeEvent, KeyboardEvent, useState} from "react";
+import { useNavigate  } from 'react-router-dom';
 
 const SearchRowWrapper = styled.div`
   position: sticky;
@@ -25,6 +26,7 @@ const SearchStyledInput = styled.input`
 `
 
 export default function Search() {
+    const navigate  = useNavigate();
     const [searchValue, setSearchValue] = useState(window.location.pathname.substring(1))
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +35,8 @@ export default function Search() {
 
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            window.location.pathname = "/" + searchValue;
+            navigate(`/${searchValue}`);
+            navigate(0);
         }
     };
 
@@ -47,7 +50,7 @@ export default function Search() {
             onKeyDown={handleKeyDown}
             type="text"
             autoFocus={true}
+            data-testid="search-input"
         />
-
     </SearchRowWrapper>
 }

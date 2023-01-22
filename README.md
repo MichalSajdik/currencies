@@ -2,6 +2,8 @@ How to run:
 1. install packages: `yarn`
 2. run application: `yarn start` (port 3000)
 
+How to test:
+1. `yarn test`
 
 Application looks:
 ![image](https://user-images.githubusercontent.com/30591067/213923638-07a57262-650e-4952-8b8e-7be5959a6d4f.png)
