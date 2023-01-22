@@ -1,11 +1,7 @@
 import {Alert, CircularProgress} from '@mui/material';
-import styled from "styled-components";
 import CurrencyRow from "./CurrencyRow";
 import {CurrencyPropsType} from "../types/CurrencyType";
 import useListOfCurrencies from "../hooks/useListOfCurrencies";
-
-const ListOfCurrenciesWrapper = styled.div`
-`
 
 export default function ListOfCurrencies() {
     const {loading, error, listOfCurrencies} = useListOfCurrencies()
@@ -18,8 +14,19 @@ export default function ListOfCurrencies() {
         return <Alert severity="error">This is an error alert — there was error, while getting data!</Alert>
     }
 
-    return <ListOfCurrenciesWrapper>
-        {listOfCurrencies.fx.map((currency: CurrencyPropsType, i: number) => <CurrencyRow key={i}
-                                                                                            currency={currency} baseCurrency={listOfCurrencies.baseCurrency}/>)}
-    </ListOfCurrenciesWrapper>
+    const searchKeyWord = window.location.pathname.substring(1).toLowerCase()
+
+    return <>
+        {listOfCurrencies.fx
+            .filter(searchKeyWordFilter(searchKeyWord))
+            .map((currency: CurrencyPropsType, i: number) => <CurrencyRow key={i}
+                                                                          currency={currency}
+                                                                          baseCurrency={listOfCurrencies.baseCurrency}/>)}
+    </>
+}
+
+function searchKeyWordFilter(searchKeyWord: string) {
+    return function (currency: CurrencyPropsType) {
+        return currency.currency.toLowerCase().includes(searchKeyWord) || currency.nameI18N?.toLowerCase().includes(searchKeyWord)
+    }
 }

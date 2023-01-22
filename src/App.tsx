@@ -5,11 +5,11 @@ import ListOfCurrencies from "./components/ListOfCurrencies";
 
 function App() {
     return (
-        <div>
+        <>
             <Header/>
             <Search/>
             <ListOfCurrencies/>
-        </div>
+        </>
     );
 }
 
