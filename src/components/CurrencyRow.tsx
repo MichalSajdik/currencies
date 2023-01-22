@@ -1,0 +1,42 @@
+import {CurrencyPropsType} from "../types/CurrencyType";
+import styled from "styled-components";
+
+const CurrencyRowWrapper = styled.div`
+  border-bottom: 1px solid #F1F1F1;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(1px + 2vmin);
+`
+
+const CurrencyRowLeftSide = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const FlagWrapper = styled.div`
+  width: 70px;
+  padding-right: 8px;
+`
+
+type CurrencyRowPropsType = {
+    currency: CurrencyPropsType;
+    baseCurrency: string;
+}
+
+export default function CurrencyRow({currency, baseCurrency}: CurrencyRowPropsType) {
+    const exchangeRate = currency.exchangeRate?.middle ? currency.exchangeRate?.middle+ " " + baseCurrency : "Value not provided"
+    return <CurrencyRowWrapper>
+        <CurrencyRowLeftSide>
+            <FlagWrapper>
+                <img src={process.env.PUBLIC_URL + "/flags/" + currency.currency.substring(0, 2).toLowerCase() + ".png"}
+                     alt=""/>
+            </FlagWrapper>
+            {currency.currency}
+        </CurrencyRowLeftSide>
+        {exchangeRate}
+    </CurrencyRowWrapper>
+}

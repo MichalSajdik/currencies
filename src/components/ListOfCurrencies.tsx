@@ -1,19 +1,25 @@
-import useFetch from 'use-http'
-import {CircularProgress} from '@mui/material';
+import {Alert, CircularProgress} from '@mui/material';
+import styled from "styled-components";
+import CurrencyRow from "./CurrencyRow";
+import {CurrencyPropsType} from "../types/CurrencyType";
+import useListOfCurrencies from "../hooks/useListOfCurrencies";
+
+const ListOfCurrenciesWrapper = styled.div`
+`
 
 export default function ListOfCurrencies() {
-    const options = {method: "GET"}
-    const {
-        loading,
-        error,
-        data = []
-    } = useFetch('https://run.mocky.io/v3/c88db14a-3128-4fbd-af74-1371c5bb0343', options, [])
+    const {loading, error, listOfCurrencies} = useListOfCurrencies()
 
     if (loading) {
         return <CircularProgress/>
     }
 
-    console.log(data)
+    if (error) {
+        return <Alert severity="error">This is an error alert — there was error, while getting data!</Alert>
+    }
 
-    return <div></div>
+    return <ListOfCurrenciesWrapper>
+        {listOfCurrencies.fx.map((currency: CurrencyPropsType, i: number) => <CurrencyRow key={i}
+                                                                                            currency={currency} baseCurrency={listOfCurrencies.baseCurrency}/>)}
+    </ListOfCurrenciesWrapper>
 }

@@ -21,6 +21,7 @@ const SearchStyledInput = styled.input`
   background-color: white;
   border-radius: 5px;
   height: calc(1px + 2vmin);
+  font-size: calc(5px + 1vmin);
 `
 
 export default function Search() {
